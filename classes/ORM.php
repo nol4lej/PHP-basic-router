@@ -35,7 +35,7 @@
         }
 
         public function updateById($nameTable, $id, $data){
-            // ---- PREPARAR QUERY CON PARAMETROS ENLAZADOS (:param) ----
+            //  1.----- PREPARAR QUERY CON PARAMETROS ENLAZADOS (:param) ----
             $sql = "UPDATE {$this->table} SET "; // 1.- Inicio de query
 
             // tecnica implode with keys
@@ -48,23 +48,38 @@
 
             $sql .= " WHERE {$nameTable}_id = {$id}"; // 4.- concatenar (.=) el id
             // ejemplo: "UPDATE Usuarios SET user_name = :newName, user_email = :newEmail WHERE user_id = 1"
-            echo $sql;
-            // ---------------------------------------------------------
-            //------------
+            //---------------------------------------------------------------
+
+            // 2.-------------
             $stm = $this->db->prepare($sql);
-            //------------
-            // ---- PREPARAR LOS ENLAZAS DE LOS PARAMETROS EN LA QUERY ----
+            
+            // 3.---- PREPARAR LOS ENLAZAS DE LOS PARAMETROS EN LA QUERY ----
             foreach ($data as $key => $value){
                 $stm->bindValue(":{$key}", $value); // :newName
             }
-            // ---------------------------------------------------------
-            //------------
+
+            //4.------------
             $stm->execute();
-            //------------
         }
 
         public function insert($data){
-            
+
+            $implodedColumns = implode(", ", array_keys($data));
+            $implodedParams = implode(", ", array_fill(0, count($data), '?'));
+
+            $sql = "INSERT INTO {$this->table} ($implodedColumns) VALUES ($implodedParams)";
+
+            $stm = $this->db->prepare($sql);
+
+            $counter = 0;
+            foreach ($data as $value) {
+                $counter++;
+                $stm->bindValue($counter, $value);
+            }
+
+            $stm->execute();
+
+
         }
 
     }

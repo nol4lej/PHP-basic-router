@@ -42,6 +42,17 @@
     // print_r($usuarios);
     // echo "<pre>";
 
+    // $usuarioModel->insert([
+    //     "user_name" => "test2",
+    //     "user_email" => "test2@test.com",
+    //     "user_password" => "test2"
+    // ]);
+
+    // $usuarios = $usuarioModel->getAll();
+    // echo "<pre>";
+    // print_r($usuarios);
+    // echo "<pre>";
+
 ?>
 
 <!DOCTYPE html>
