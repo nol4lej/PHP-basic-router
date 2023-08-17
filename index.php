@@ -3,6 +3,23 @@
     require_once(__DIR__ . "/router/router.php");
     $router = new Router();
     $title = PAGE_TITLE;
+
+
+    require_once(__DIR__ . "/classes/database.php");
+    $database = new Database();
+    $connection = $database->getConnection();
+
+    require_once(__DIR__ . "/classes/ORM.php");
+    require_once(__DIR__ . "/classes/Users.php");
+
+    $usuarioModel = new User($connection);
+    $usuarios = $usuarioModel->getAll();
+
+    echo "<pre>";
+    print_r($usuarios);
+    echo "<pre>";
+
+
 ?>
 
 <!DOCTYPE html>
