@@ -5,7 +5,8 @@ class Router{
     private $routes = [
         "error" => ["Home", "/views/error404.php"],
         "" => ["Home", "/views/home.php"], // Ruta base
-        "about" => ["About", "/views/about.php"]
+        "about" => ["About", "/views/about.php"],
+        "register" => ["Register", "/views/register.php"]
     ];
 
     public function __construct(){
@@ -14,8 +15,6 @@ class Router{
     public function run(){}
 
     public function prepareRoute(){
-        echo "FULL RUTA: " . FULLURL . "<br>-----<br>";
-
         $parsed_url = parse_url(FULLURL);
         $parsed_url_path = explode("/", $parsed_url["path"]); // divido mi URL en sus slash
         $viewPath = array_slice($parsed_url_path, 4); // capturo los elementos a partir del 4 elemento

@@ -1,26 +1,33 @@
 <?php
     require_once(__DIR__ . "/config.php");
     require_once(__DIR__ . "/router/router.php");
+    require_once(__DIR__ . "/classes/ORM.php");
+    require_once(__DIR__ . "/classes/Container.php");
+    // echo "FULL RUTA: " . FULLURL . "<br>-----<br>";
     $router = new Router();
     $title = PAGE_TITLE;
 
+    // $container = new Container();
+    
 
-    require_once(__DIR__ . "/classes/database.php");
-    $database = new Database();
-    $connection = $database->getConnection();
+    // $connection = $container->getDatabaseConnection();
+    // $userModel = $container->getUserModel($connection);
 
-    require_once(__DIR__ . "/classes/ORM.php");
-    require_once(__DIR__ . "/classes/Users.php");
-    require_once(__DIR__ . "/classes/Products.php");
+    
 
-    $usuarioModel = new User($connection);
-    $usuarios = $usuarioModel->getAll();
 
-    echo "<pre>";
-    print_r($usuarios);
-    echo "<pre>";
+    // $database = new Database();
+    // $connection = $database->getConnection();
 
-    $productModel = new Products($connection);
+
+    // $usuarioModel = new User($connection);
+    // $usuarios = $usuarioModel->getAll();
+
+    // echo "<pre>";
+    // print_r($usuarios);
+    // echo "<pre>";
+
+    // $productModel = new Products($connection);
 
     // $productos = $productModel->getAll();
     // echo "<pre>";

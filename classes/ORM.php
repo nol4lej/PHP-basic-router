@@ -64,8 +64,8 @@
 
         public function insert($data){
 
-            $implodedColumns = implode(", ", array_keys($data));
-            $implodedParams = implode(", ", array_fill(0, count($data), '?'));
+            $implodedColumns = implode(", ", array_keys($data)); //array_keys para insertar cada dato del array separados con una ","
+            $implodedParams = implode(", ", array_fill(0, count($data), '?')); // array_fill para reemplazar cada dato ingresado por un "?"
 
             $sql = "INSERT INTO {$this->table} ($implodedColumns) VALUES ($implodedParams)";
 
