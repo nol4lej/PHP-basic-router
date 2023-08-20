@@ -3,10 +3,9 @@
 class Router{
 
     private $routes = [
-        "error" => ["Home", "/views/error404.php"],
-        "" => ["Home", "/views/home.php"], // Ruta base
-        "about" => ["About", "/views/about.php"],
-        "register" => ["Register", "/views/register.php"]
+        "error" => "/views/error404.php",
+        "" => "/views/Home/Home.php", // Ruta base
+        "register" => "/views/Register/Register.php"
     ];
 
     public function __construct(){
@@ -28,10 +27,9 @@ class Router{
     }
 
     private function normalPath($viewPath){
-        foreach($this->routes as $route => $routeData){
+        foreach($this->routes as $route => $path){
             if($viewPath[0] === $route){ // viewPath[0] almacena el nombre de la vista
-                require_once getcwd() . $routeData[1]; // ruta raiz del proyecto + ruta de la vista.
-                define("PAGE_TITLE", $routeData[0]);
+                require_once getcwd() . $path; // ruta raiz del proyecto + ruta de la vista.
                 return;
             }
         }

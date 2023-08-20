@@ -1,0 +1,16 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__links{
+    display: flex;
+}
+
+
+
+.main{
+    display: flex;
+    border: 1px solid red;
+}

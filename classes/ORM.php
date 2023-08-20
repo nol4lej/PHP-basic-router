@@ -29,6 +29,21 @@
             return $stm->fetch();
         }
 
+        public function loginByEmailAndUser($login, $password){
+            $stm = $this->db->prepare("SELECT * FROM {$this->table} WHERE (user_name = ? OR user_email = ?) AND user_password = ?");
+
+            $stm->bindValue(1, $login);
+            $stm->bindValue(2, $login);
+            $stm->bindValue(3, $password);
+
+            try {
+                $stm->execute();
+                return $stm->fetchAll();
+            } catch (PDOException $error) {
+                throw new Exception($error);
+            }
+        }
+
         public function deleteById($nameTable, $id){
             $stm = $this->db->prepare("DELETE FROM {$this->table} WHERE {$nameTable}_id = {$id}");
             $stm->execute();

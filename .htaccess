@@ -1,2 +1,5 @@
 RewriteEngine On
 RewriteRule ^(.*)$ index.php [L]
+
+RewriteRule ^.*\.css$ - [env=headercss:1] 
+Header set Content-type text/css env=headercss
